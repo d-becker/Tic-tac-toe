@@ -1,6 +1,8 @@
 #ifndef DEFAULT_BOARD_H
 #define DEFAULT_BOARD_H
 
+#include <unordered_map>
+
 #include "Board.h"
 
 namespace ttt {
@@ -30,6 +32,8 @@ public:
 private:
   const int m_width;
   const int m_height;
+
+  std::unordered_map<int, std::unordered_map<int, int>> m_data;
 };
 
 } // namespace ttt.
