@@ -11,6 +11,10 @@ namespace ttt {
  * An interface for a low-level class that represents a game board.
  * The values are <tt>int</tt>s, where 0 means empty and other numbers are
  * the identifiers of the players.
+ *
+ * The coordinate system is zero-based, with the cell with coordinates (0, 0)
+ * being at the top left corner. The positive x-axis grows rightwards
+ * and the positive y-axis grows downwards.
  */
 class Board
 {
