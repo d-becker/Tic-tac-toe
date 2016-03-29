@@ -24,7 +24,8 @@ public:
 
   GameState(const GameState& other);
   GameState(GameState&& other);
-
+  virtual ~GameState();
+  
   /**
    * Returns a const (smart) pointer to the game board.
    *

@@ -27,6 +27,10 @@ GameState::GameState(GameState&& other)
 {
 }
 
+GameState::~GameState()
+{
+}
+
 std::shared_ptr<const Board> GameState::getBoard() const
 {
   return m_board;
