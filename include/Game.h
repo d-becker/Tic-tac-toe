@@ -1,5 +1,5 @@
-#ifndef GAME_STATE_H
-#define GAME_STATE_H
+#ifndef GAME_H
+#define GAME_H
 
 #include <memory>
 
@@ -10,21 +10,21 @@ namespace ttt {
 /**
  * A class that stores the game state.
  */
-class GameState
+class Game
 {
 public:
   /**
-   * Constructs a new \c GameState object.
+   * Constructs a new \c Game object.
    *
    * \param board A smart pointer to the game board.
    * \param num_of_players The number of players this game has.
    */
-  GameState(std::shared_ptr<Board> board,
-	    int num_of_players);
+  Game(std::shared_ptr<Board> board,
+       int num_of_players);
 
-  GameState(const GameState& other);
-  GameState(GameState&& other);
-  virtual ~GameState();
+  Game(const Game& other);
+  Game(Game&& other);
+  virtual ~Game();
   
   /**
    * Returns a const (smart) pointer to the game board.
@@ -67,4 +67,4 @@ private:
 
 } // namespace ttt.
 
-#endif // GAME_STATE_H
+#endif // GAME_H

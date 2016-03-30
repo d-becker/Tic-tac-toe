@@ -1,9 +1,9 @@
-#include "GameState.h"
+#include "Game.h"
 
 namespace ttt {
 
-GameState::GameState(std::shared_ptr<Board> board,
-		     int num_of_players)
+Game::Game(std::shared_ptr<Board> board,
+	   int num_of_players)
   : m_board(board),
     m_num_of_players(num_of_players),
     m_current_player(0),
@@ -11,7 +11,7 @@ GameState::GameState(std::shared_ptr<Board> board,
 {
 }
 
-GameState::GameState(const GameState& other)
+Game::Game(const Game& other)
   : m_board(other.m_board->clone()),
     m_num_of_players(other.m_num_of_players),
     m_current_player(other.m_current_player),
@@ -19,7 +19,7 @@ GameState::GameState(const GameState& other)
 {
 }
 
-GameState::GameState(GameState&& other)
+Game::Game(Game&& other)
   : m_board(other.m_board),
     m_num_of_players(other.m_num_of_players),
     m_current_player(other.m_current_player),
@@ -27,26 +27,26 @@ GameState::GameState(GameState&& other)
 {
 }
 
-GameState::~GameState()
+Game::~Game()
 {
 }
 
-std::shared_ptr<const Board> GameState::getBoard() const
+std::shared_ptr<const Board> Game::getBoard() const
 {
   return m_board;
 }
 
-int GameState::getNumberOfPlayers() const
+int Game::getNumberOfPlayers() const
 {
   return m_num_of_players;
 }
 
-int GameState::getCurrentPlayer() const
+int Game::getCurrentPlayer() const
 {
   return m_current_player;
 }
 
-int GameState::getStepsTaken() const
+int Game::getStepsTaken() const
 {
   return m_steps_taken;
 }
