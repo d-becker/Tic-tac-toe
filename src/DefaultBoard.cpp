@@ -34,12 +34,12 @@ int DefaultBoard::get(int x,
 		      int y) const
 {
   auto it_x = m_data.find(x);
-  if (it_x != m_data.end())
+  if (it_x == m_data.end())
     return 0;
 
   const std::unordered_map<int, int>& column = it_x->second;
   auto it_y = column.find(y);
-  if (it_y != column.end())
+  if (it_y == column.end())
     return 0;
 
   return it_y->second;
