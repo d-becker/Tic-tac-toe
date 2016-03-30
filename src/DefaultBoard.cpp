@@ -58,6 +58,11 @@ bool DefaultBoard::set(int x,
   return false;
 }
 
+void DefaultBoard::clear()
+{
+  m_data.clear();
+}
+
 std::shared_ptr<Board> DefaultBoard::clone() const
 {
   return std::make_shared<DefaultBoard>(*this);

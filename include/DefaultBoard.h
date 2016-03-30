@@ -27,6 +27,8 @@ public:
 		   int y,
 		   int value) override;
 
+  virtual void clear() override;
+  
   virtual std::shared_ptr<Board> clone() const override;
 
 private:

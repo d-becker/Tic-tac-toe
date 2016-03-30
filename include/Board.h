@@ -96,6 +96,11 @@ public:
   }
 
   /**
+   * Clears the board, that is, sets all cells to 0.
+   */
+  virtual void clear() = 0;
+
+  /**
    * Returns a polymorphic copy of this \c Board object.
    *
    * \return A polymorphic copy of this \c Board object.

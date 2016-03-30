@@ -4,6 +4,7 @@
 #include <memory>
 
 #include "Board.h"
+#include "Rules.h"
 
 namespace ttt {
 
