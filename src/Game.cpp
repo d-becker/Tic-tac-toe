@@ -51,13 +51,15 @@ int Game::getMovesTaken() const
   return m_moves_taken;
 }
 
-bool Game::takeMove(const Vec2& pos,
-	      int player)
+bool Game::takeMove(const Vec2& pos)
 {
-  if (!isLegal(pos, player))
+  if (!isLegal(pos, m_current_player) || !m_board->set(pos, m_current_player))
       return false;
-  else
-    return m_board->set(pos,player);
+
+  ++m_moves_taken;
+  m_current_player = m_moves_taken % m_num_of_players;
+
+  return true;
 }
 
 } // namespace ttt.

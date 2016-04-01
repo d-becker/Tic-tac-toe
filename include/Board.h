@@ -92,7 +92,7 @@ public:
   virtual bool set(const Vec2& vec,
 		   int value)
   {
-    set(vec.x, vec.y, value);
+    return set(vec.x, vec.y, value);
   }
 
   /**

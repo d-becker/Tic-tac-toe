@@ -2,9 +2,9 @@
 #define GAME_H
 
 #include <memory>
+#include <vector>
 
 #include "Board.h"
-#include "Rules.h"
 
 namespace ttt {
 
@@ -58,15 +58,13 @@ public:
   int getMovesTaken() const;
 
   /**
-   * Takes the specified move if it is possible.
+   * Takes the specified move by the current player if it is possible.
    *
    * \param pos The position of the move.
-   * \param player The number (id) of the player taking the move.
    *
    * \return \c true if the move has been taken; \c false if it was not possible.
    */
-  virtual bool takeMove(const Vec2& pos,
-			 int player);
+  virtual bool takeMove(const Vec2& pos);
   
   /**
    * Checks whether a proposed move is legal according to the rules of the game.
@@ -104,5 +102,4 @@ private:
 };
 
 } // namespace ttt.
-
 #endif // GAME_H
