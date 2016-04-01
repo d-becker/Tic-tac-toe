@@ -9,7 +9,7 @@
 namespace ttt {
 
 /**
- * A class that stores the game state.
+ * A interface that represents the game state and rules.
  */
 class Game
 {
@@ -92,6 +92,13 @@ public:
    */
   virtual bool isGameOver(int& winner,
 			  std::vector<Vec2>& winner_positions) const = 0;
+  
+  /**
+   * Returns a polymorphic copy of this \c Game object.
+   *
+   * \return A polymorphic copy of this \c Game object.
+   */
+  virtual std::shared_ptr<Game> clone() const = 0;
 private:
   const std::shared_ptr<Board> m_board;
 

@@ -4,6 +4,7 @@ set(SRC_FILES
 	main.cpp
 	DefaultBoard.cpp
 	Game.cpp
+	TraditionalGame.cpp
    )
 
 add_executable(TicTacToe ${SRC_FILES})
