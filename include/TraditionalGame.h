@@ -18,17 +18,14 @@ public:
 
   virtual bool isLegal(const Vec2& pos,
 		       int player) const override;
-  virtual bool isGameOver(int& winner,
-			  std::vector<Vec2>& winner_positions) const override;
+  /* virtual bool isGameOver(int& winner,
+     std::vector<Vec2>& winner_positions) const override;*/
 
   virtual std::shared_ptr<Game> clone() const override;
 
   virtual bool isGameWonAt(const Vec2& pos,
 			   int& winner,
-			   std::vector<Vec2>& winner_positions) const;
-
-private:
-  const int m_length_to_win;
+			   std::vector<Vec2>& winner_positions) const override;
 };
 
 } // namespace ttt.

@@ -21,7 +21,8 @@ public:
    * \param num_of_players The number of players this game has.
    */
   Game(std::shared_ptr<Board> board,
-       int num_of_players);
+       int num_of_players,
+       int length_to_win);
 
   Game(const Game& other);
   Game(Game&& other);
@@ -57,6 +58,8 @@ public:
    */
   int getMovesTaken() const;
 
+  bool isGameOver() const;
+
   /**
    * Takes the specified move by the current player if it is possible.
    *
@@ -90,8 +93,28 @@ public:
    *
    * \return \c true if the game is over; \c false otherwise.
    */
-  virtual bool isGameOver(int& winner,
-			  std::vector<Vec2>& winner_positions) const = 0;
+  virtual bool checkGameOver(int& winner,
+			     std::vector<Vec2>& winner_positions) const;
+
+  /**
+   * Checks whether the stone at the given cell is part of a winning line.
+   *
+   * \param pos The position of the cell to check.
+   *
+   * \param winner An output parameter that is set to the id number of
+   *        the winning player if the game has been won. If the game is not over
+   *        or ended in a draw, it is undefined if the value is modified.
+   * \param winner_positions An output parameter that will contain
+   *        the positions of the winning stones if the game has been won.
+   *        If the game is not over or ended in a draw,
+   *        it is undefined if the value is modified.
+   *
+   * \return \c true if the stone at the given cell is part of a winning line;
+   *         \c false otherwise.
+   */
+  virtual bool isGameWonAt(const Vec2& pos,
+			   int& winner,
+			   std::vector<Vec2>& winner_positions) const = 0;
   
   /**
    * Returns a polymorphic copy of this \c Game object.
@@ -99,13 +122,15 @@ public:
    * \return A polymorphic copy of this \c Game object.
    */
   virtual std::shared_ptr<Game> clone() const = 0;
+protected:
+  const int m_length_to_win;
+  const int m_num_of_players;
 private:
   const std::shared_ptr<Board> m_board;
-
-  const int m_num_of_players;
   int m_current_player; // From 0 to m_num_of_players - 1.
 
   int m_moves_taken;
+  bool m_game_over;
 };
 
 } // namespace ttt.

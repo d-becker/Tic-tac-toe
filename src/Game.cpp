@@ -3,27 +3,34 @@
 namespace ttt {
 
 Game::Game(std::shared_ptr<Board> board,
-	   int num_of_players)
-  : m_board(board),
+	   int num_of_players,
+	   int length_to_win)
+  : m_length_to_win(length_to_win),
     m_num_of_players(num_of_players),
+    m_board(board),
     m_current_player(0),
-    m_moves_taken(0)
+    m_moves_taken(0),
+    m_game_over(false)
 {
 }
 
 Game::Game(const Game& other)
-  : m_board(other.m_board->clone()),
+  : m_length_to_win(other.m_length_to_win),
     m_num_of_players(other.m_num_of_players),
+    m_board(other.m_board->clone()),
     m_current_player(other.m_current_player),
-    m_moves_taken(other.m_moves_taken)
+    m_moves_taken(other.m_moves_taken),
+    m_game_over(other.m_game_over)
 {
 }
 
 Game::Game(Game&& other)
-  : m_board(other.m_board),
+  : m_length_to_win(other.m_length_to_win),
     m_num_of_players(other.m_num_of_players),
+    m_board(other.m_board),
     m_current_player(other.m_current_player),
-    m_moves_taken(other.m_moves_taken)
+    m_moves_taken(other.m_moves_taken),
+    m_game_over(other.m_game_over)
 {
 }
 
@@ -51,6 +58,11 @@ int Game::getMovesTaken() const
   return m_moves_taken;
 }
 
+bool Game::isGameOver() const
+{
+  return m_game_over;
+}
+
 bool Game::takeMove(const Vec2& pos)
 {
   if (!isLegal(pos, m_current_player) || !m_board->set(pos, m_current_player))
@@ -60,6 +72,34 @@ bool Game::takeMove(const Vec2& pos)
   m_current_player = m_moves_taken % m_num_of_players;
 
   return true;
+}
+
+// This implementation is not optimal, it can be better if the underlying
+// data structure of the board is known.
+bool Game::checkGameOver(int& winner,
+			 std::vector<Vec2>& winner_positions) const
+{
+  std::shared_ptr<const Board> board = getBoard();
+  int width = board->getWidth();
+  int height = board->getHeight();
+  
+  if (m_moves_taken >= width * height)
+  {
+    winner = 0;
+    return true;
+  }
+
+  for (int i = 0; i < width; ++i)
+  {
+    for (int j = 0; j < height; ++j)
+    {
+      bool won = isGameWonAt(Vec2(i, j), winner, winner_positions);
+      if (won)
+	return true;
+    }
+  }
+
+  return false;
 }
 
 } // namespace ttt.

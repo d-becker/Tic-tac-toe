@@ -45,20 +45,17 @@ namespace ttt {
 TraditionalGame::TraditionalGame(std::shared_ptr<Board> board,
 				 int num_of_players,
 				 int length_to_win)
-  : Game(board, num_of_players),
-    m_length_to_win(length_to_win)
+  : Game(board, num_of_players, length_to_win)
 {
 }
 
 TraditionalGame::TraditionalGame(const TraditionalGame& other)
-  : Game(other),
-    m_length_to_win(other.m_length_to_win)
+  : Game(other)
 {
 }
 
 TraditionalGame::TraditionalGame(TraditionalGame&& other)
-  : Game(other),
-    m_length_to_win(other.m_length_to_win)
+  : Game(other)
 {
 }
 
@@ -72,11 +69,11 @@ bool TraditionalGame::isLegal(const Vec2& pos,
   return getBoard()->get(pos) == 0;
 }
 
-bool TraditionalGame::isGameOver(int& winner,
+/*bool TraditionalGame::isGameOver(int& winner,
 				 std::vector<Vec2>& winner_positions) const
 {
   // TODO.
-}
+}*/
 
 std::shared_ptr<Game> TraditionalGame::clone() const
 {
@@ -84,8 +81,8 @@ std::shared_ptr<Game> TraditionalGame::clone() const
 }
 
 bool TraditionalGame::isGameWonAt(const Vec2& pos,
-		 int& winner,
-		 std::vector<Vec2>& winner_positions) const
+				  int& winner,
+				  std::vector<Vec2>& winner_positions) const
 {
   static const std::vector<Vec2> directions {Vec2(1, 0), Vec2(0, 1),
                                              Vec2(1, 1), Vec2(1, -1)};
