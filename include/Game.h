@@ -58,7 +58,12 @@ public:
    */
   int getMovesTaken() const;
 
-  bool isGameOver() const;
+  /**
+   * Returns \c true if the game is over.
+   *
+   * \return \c true if the game is over; \c false otherwise.
+   */
+  virtual bool isGameOver() const = 0;
 
   /**
    * Takes the specified move by the current player if it is possible.
@@ -82,12 +87,17 @@ public:
   
   /**
    * Updates the state that stores information about the state of the current
-   * game (if it has been won and if so by which player and where). This method
+   * game (players who have a winning sequence and where these are). This method
    * checks the whole board, so if a winning position is expected, it can be
    * better to use the method which takes the position.
    *
-   * If the game is not won, the fields storing the number of the winning player
-   * and the winning positions are set to 0 and an emtpy vector respectively.
+   * If there are no winning sequences, the fields storing the number of
+   * the winning player and the winning positions are set to 0 and an
+   * emtpy vector respectively.
+   *
+   * Note: the value that is returned by the method \c isGameOver is never
+   * modified by this method as the conditions for when the game is over can
+   * depend on the rules of the actual game.
    */
   void updateWinnerState();
 
@@ -95,26 +105,26 @@ public:
    * Checks the given position and if that is a place where the game is won,
    * state that stores information about the state of the game is updated.
    * Otherwise the stored values are not modified.
-   *
+   * 
+   * Note: the value that is returned by the method \c isGameOver is never
+   * modified by this method as the conditions for when the game is over can
+   * depend on the rules of the actual game.   *
    * \param pos The position to check.
    */
   void updateWinnerState(const Vec2& pos);
 
   /**
-   * Checks whether the game is over accordig to the rules of the game.
+   * Checks the state of the game with regards to winner sequences.
    *
-   * \param winner An output parameter that is set to the id number of
-   *        the winning player if the game has been won. If the game is not over
-   *        or ended in a draw, it is undefined if the value is modified.
+   * \param winners An output parameter that is set to contain the id numbers of
+   *        the players that have a winnig sequence.
    * \param winner_positions An output parameter that will contain
-   *        the positions of the winning stones if the game has been won.
-   *        If the game is not over or ended in a draw,
-   *        it is undefined if the value is modified.
-   *
-   * \return \c true if the game is over; \c false otherwise.
+   *        the positions of the winning sequences.
    */
-  virtual bool checkGameOver(int& winner,
-			     std::vector<Vec2>& winner_positions)const;
+  virtual void  checkWinnerState(std::vector<int>& winners,
+				std::vector<
+				  std::vector<Vec2>
+				           >& winners_positions) const;
 
   /**
    * Checks whether the stone at the given cell is part of a winning line.
@@ -141,7 +151,7 @@ public:
    *
    * \return The id nunber of the winner if the game is won or 0 if it is not.
    */
-  virtual int getWinner() const;
+  virtual std::vector<int> getWinners() const;
 
   /**
    * Returns a vector containing the positions of the winning sequence
@@ -150,7 +160,7 @@ public:
    * \return A vector containing the positions of the winning sequence
    *         if one exists, otherwise an empty vector.
    */
-  virtual std::vector<Vec2> getWinnerPositions() const;
+  virtual std::vector< std::vector<Vec2> > getWinnersPositions() const;
   
   /**
    * Returns a polymorphic copy of this \c Game object.
@@ -162,9 +172,8 @@ protected:
   const int m_length_to_win;
   const int m_num_of_players;
 
-  bool m_game_over;
-  int m_winner;
-  std::vector<Vec2> m_winner_positions;
+  std::vector<int>  m_winners;
+  std::vector< std::vector<Vec2> > m_winners_positions;
 private:
   const std::shared_ptr<Board> m_board;
   int m_current_player; // From 0 to m_num_of_players - 1.

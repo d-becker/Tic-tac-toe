@@ -63,6 +63,11 @@ TraditionalGame::~TraditionalGame()
 {
 }
 
+bool TraditionalGame::isGameOver() const
+{
+  return !m_winners.empty();
+}
+
 bool TraditionalGame::isLegal(const Vec2& pos,
 			      int player) const
 {

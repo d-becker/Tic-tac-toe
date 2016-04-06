@@ -16,10 +16,9 @@ public:
   TraditionalGame(TraditionalGame&& other);
   virtual ~TraditionalGame();
 
+  virtual bool isGameOver() const override;
   virtual bool isLegal(const Vec2& pos,
 		       int player) const override;
-  /* virtual bool isGameOver(int& winner,
-     std::vector<Vec2>& winner_positions) const override;*/
 
   virtual std::shared_ptr<Game> clone() const override;
 
