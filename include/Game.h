@@ -79,8 +79,25 @@ public:
    */
   virtual bool isLegal(const Vec2& pos,
 		       int player) const = 0;
-
+  
+  /**
+   * Updates the state that stores information about the state of the current
+   * game (if it has been won and if so by which player and where). This method
+   * checks the whole board, so if a winning position is expected, it can be
+   * better to use the method which takes the position.
+   *
+   * If the game is not won, the fields storing the number of the winning player
+   * and the winning positions are set to 0 and an emtpy vector respectively.
+   */
   void updateWinnerState();
+
+  /**
+   * Checks the given position and if that is a place where the game is won,
+   * state that stores information about the state of the game is updated.
+   * Otherwise the stored values are not modified.
+   *
+   * \param pos The position to check.
+   */
   void updateWinnerState(const Vec2& pos);
 
   /**

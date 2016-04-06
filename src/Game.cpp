@@ -82,14 +82,34 @@ bool Game::takeMove(const Vec2& pos)
 
 void Game::updateWinnerState()
 {
-  // TODO
-  int nothing;
+  for (int i = 0; i < m_board->getWidth(); ++i)
+  {
+    for (int j = 0; j < m_board->getHeight(); ++j)
+    {
+      if (isGameWonAt(Vec2(i, j), m_winner, m_winner_positions))
+      {
+	m_game_over = true;
+	return;
+      }
+    }
+  }
+
+  m_game_over = false;
+  m_winner = 0;
+  m_winner_positions.clear();
 }
 
 void Game::updateWinnerState(const Vec2& pos)
 {
-  // TODO;
-  int a;
+  int winner;
+  std::vector<Vec2> winner_positions;
+  if (isGameWonAt(pos, winner, winner_positions))
+  {
+    m_game_over = true;
+    m_winner = winner;
+    m_winner_positions = winner_positions;
+  }
+
 }
 
 // This implementation is not optimal, it can be better if the underlying
