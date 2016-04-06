@@ -80,6 +80,9 @@ public:
   virtual bool isLegal(const Vec2& pos,
 		       int player) const = 0;
 
+  void updateWinnerState();
+  void updateWinnerState(const Vec2& pos);
+
   /**
    * Checks whether the game is over accordig to the rules of the game.
    *
@@ -94,7 +97,7 @@ public:
    * \return \c true if the game is over; \c false otherwise.
    */
   virtual bool checkGameOver(int& winner,
-			     std::vector<Vec2>& winner_positions) const;
+			     std::vector<Vec2>& winner_positions)const;
 
   /**
    * Checks whether the stone at the given cell is part of a winning line.
@@ -115,6 +118,22 @@ public:
   virtual bool isGameWonAt(const Vec2& pos,
 			   int& winner,
 			   std::vector<Vec2>& winner_positions) const = 0;
+
+  /**
+   * Returns the id nunber of the winner if the game is won or 0 if it is not.
+   *
+   * \return The id nunber of the winner if the game is won or 0 if it is not.
+   */
+  virtual int getWinner() const;
+
+  /**
+   * Returns a vector containing the positions of the winning sequence
+   * if one exists, otherwise an empty vector.
+   *
+   * \return A vector containing the positions of the winning sequence
+   *         if one exists, otherwise an empty vector.
+   */
+  virtual std::vector<Vec2> getWinnerPositions() const;
   
   /**
    * Returns a polymorphic copy of this \c Game object.
@@ -125,12 +144,15 @@ public:
 protected:
   const int m_length_to_win;
   const int m_num_of_players;
+
+  bool m_game_over;
+  int m_winner;
+  std::vector<Vec2> m_winner_positions;
 private:
   const std::shared_ptr<Board> m_board;
   int m_current_player; // From 0 to m_num_of_players - 1.
 
   int m_moves_taken;
-  bool m_game_over;
 };
 
 } // namespace ttt.

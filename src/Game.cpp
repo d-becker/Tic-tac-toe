@@ -7,30 +7,36 @@ Game::Game(std::shared_ptr<Board> board,
 	   int length_to_win)
   : m_length_to_win(length_to_win),
     m_num_of_players(num_of_players),
+    m_game_over(false),
+    m_winner(0),
+    m_winner_positions(),
     m_board(board),
     m_current_player(0),
-    m_moves_taken(0),
-    m_game_over(false)
+    m_moves_taken(0)
 {
 }
 
 Game::Game(const Game& other)
   : m_length_to_win(other.m_length_to_win),
     m_num_of_players(other.m_num_of_players),
+    m_game_over(other.m_game_over),
+    m_winner(other.m_winner),
+    m_winner_positions(other.m_winner_positions),
     m_board(other.m_board->clone()),
     m_current_player(other.m_current_player),
-    m_moves_taken(other.m_moves_taken),
-    m_game_over(other.m_game_over)
+    m_moves_taken(other.m_moves_taken)
 {
 }
 
 Game::Game(Game&& other)
   : m_length_to_win(other.m_length_to_win),
     m_num_of_players(other.m_num_of_players),
+    m_game_over(other.m_game_over),
+    m_winner(other.m_winner),
+    m_winner_positions(other.m_winner_positions),
     m_board(other.m_board),
     m_current_player(other.m_current_player),
-    m_moves_taken(other.m_moves_taken),
-    m_game_over(other.m_game_over)
+    m_moves_taken(other.m_moves_taken)    
 {
 }
 
@@ -74,6 +80,18 @@ bool Game::takeMove(const Vec2& pos)
   return true;
 }
 
+void Game::updateWinnerState()
+{
+  // TODO
+  int nothing;
+}
+
+void Game::updateWinnerState(const Vec2& pos)
+{
+  // TODO;
+  int a;
+}
+
 // This implementation is not optimal, it can be better if the underlying
 // data structure of the board is known.
 bool Game::checkGameOver(int& winner,
@@ -95,11 +113,23 @@ bool Game::checkGameOver(int& winner,
     {
       bool won = isGameWonAt(Vec2(i, j), winner, winner_positions);
       if (won)
+      {
 	return true;
+      }
     }
   }
 
   return false;
+}
+
+int Game::getWinner() const
+{
+  return m_winner;
+}
+
+std::vector<Vec2> Game::getWinnerPositions() const
+{
+  return m_winner_positions;
 }
 
 } // namespace ttt.
