@@ -47,6 +47,14 @@ public:
 		  int y) const = 0;
 
   /**
+   * The same as \c get(vec.x, vec.y).
+   */
+  virtual bool get(const Vec2& vec) const
+  {
+    return get(vec.x, vec.y);
+  }
+  
+  /**
    * Returns \c true if the given cell exists.
    *
    * \return \c true if the given cell exists; \c false otherwise.
@@ -62,14 +70,6 @@ public:
   bool isValid(const Vec2& vec) const
   {
     return isValid(vec.x, vec.y);
-  }
-  
-  /**
-   * The same as \c get(vec.x, vec.y).
-   */
-  virtual bool get(const Vec2& vec) const
-  {
-    return get(vec.x, vec.y);
   }
 
   /**

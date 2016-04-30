@@ -121,7 +121,7 @@ public:
    * \param winner_positions An output parameter that will contain
    *        the positions of the winning sequences.
    */
-  virtual void  checkWinnerState(std::vector<int>& winners,
+  virtual void checkWinnerState(std::vector<int>& winners,
 				std::vector<
 				  std::vector<Vec2>
 				           >& winners_positions) const;
