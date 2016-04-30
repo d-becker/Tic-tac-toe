@@ -1,5 +1,5 @@
-#ifndef VEC2_H
-#define VEC2_H
+#ifndef VEC2_HPP
+#define VEC2_HPP
 
 namespace ttt {
 
@@ -77,4 +77,4 @@ inline bool operator==(const Vec2 lhs,
 
 } // namespace ttt.
 
-#endif //  VEC2_H
+#endif //  VEC2_HPP

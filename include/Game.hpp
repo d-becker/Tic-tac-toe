@@ -1,10 +1,10 @@
-#ifndef GAME_H
-#define GAME_H
+#ifndef GAME_HPP
+#define GAME_HPP
 
 #include <memory>
 #include <vector>
 
-#include "Board.h"
+#include "Board.hpp"
 
 namespace ttt {
 
@@ -182,4 +182,4 @@ private:
 };
 
 } // namespace ttt.
-#endif // GAME_H
+#endif // GAME_HPP

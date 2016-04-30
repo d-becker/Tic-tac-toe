@@ -1,8 +1,8 @@
-#ifndef TRADITIONAL_GAME_H
-#define TRADITIONAL_GAME_H
+#ifndef TRADITIONAL_GAME_HPP
+#define TRADITIONAL_GAME_HPP
 
-#include "Game.h"
-#include "Vec2.h"
+#include "Game.hpp"
+#include "Vec2.hpp"
 
 namespace ttt {
 
@@ -29,4 +29,4 @@ public:
 
 } // namespace ttt.
 
-#endif // TRADITIONAL_GAME_H
+#endif // TRADITIONAL_GAME_HPP

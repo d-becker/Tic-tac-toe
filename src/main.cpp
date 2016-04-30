@@ -1,9 +1,9 @@
 #include <iostream>
 #include <memory>
 
-#include "Board.h"
-#include "DefaultBoard.h"
-#include "Vec2.h"
+#include "Board.hpp"
+#include "DefaultBoard.hpp"
+#include "Vec2.hpp"
 
 using namespace std;
 using namespace ttt;

@@ -1,4 +1,4 @@
-#include "TraditionalGame.h"
+#include "TraditionalGame.hpp"
 
 #include <algorithm>
 

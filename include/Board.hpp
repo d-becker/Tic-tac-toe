@@ -1,9 +1,9 @@
-#ifndef BOARD_H
-#define BOARD_H
+#ifndef BOARD_HPP
+#define BOARD_HPP
 
 #include <memory>
 
-#include "Vec2.h"
+#include "Vec2.hpp"
 
 namespace ttt {
 
@@ -111,4 +111,4 @@ public:
 
 } // namespace ttt.
 
-#endif // BOARD_H
+#endif // BOARD_HPP
