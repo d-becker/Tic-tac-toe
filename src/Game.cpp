@@ -1,5 +1,7 @@
 #include "Game.hpp"
 
+#include <stdexcept>
+
 namespace ttt {
 
 Game::Game(std::shared_ptr<Board> board,
@@ -13,6 +15,8 @@ Game::Game(std::shared_ptr<Board> board,
     m_current_player(0),
     m_moves_taken(0)
 {
+  if (!board)
+    throw std::invalid_argument("The board cannot be null.");
 }
 
 Game::Game(const Game& other)
