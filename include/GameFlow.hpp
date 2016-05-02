@@ -4,8 +4,9 @@
 #include <memory>
 
 #include "Game.hpp"
+#include "Vec2.hpp"
 
-namesapce ttt {
+namespace ttt {
 
 class GameFlow
 {
