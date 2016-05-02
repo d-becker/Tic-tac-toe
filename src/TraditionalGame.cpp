@@ -108,4 +108,9 @@ bool TraditionalGame::isGameWonAt(const Vec2& pos,
   return false;
 }
 
+void TraditionalGame::clearState()
+{
+  Game::clearState();
+}
+
 } // namespace ttt.

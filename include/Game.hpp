@@ -168,7 +168,7 @@ public:
    * the state in the base class. The overridden methods should always call the
    * \c clearState method of the parent class.
    */
-  virtual void clearState();
+  virtual void clearState() = 0;
   
   /**
    * Returns a polymorphic copy of this \c Game object.

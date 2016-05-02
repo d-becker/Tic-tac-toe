@@ -25,6 +25,8 @@ public:
   virtual bool isGameWonAt(const Vec2& pos,
 			   int& winner,
 			   std::vector<Vec2>& winner_positions) const override;
+
+  virtual void clearState() override;
 };
 
 } // namespace ttt.
