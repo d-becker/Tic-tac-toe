@@ -161,6 +161,14 @@ public:
    *         if one exists, otherwise an empty vector.
    */
   virtual std::vector< std::vector<Vec2> > getWinnersPositions() const;
+
+  /**
+   * Clears the state of the game so that a new game can start. All subclasses
+   * should override this method if they have additional state in addition to
+   * the state in the base class. The overridden methods should always call the
+   * \c clearState method of the parent class.
+   */
+  virtual void clearState();
   
   /**
    * Returns a polymorphic copy of this \c Game object.
@@ -176,7 +184,7 @@ protected:
   std::vector< std::vector<Vec2> > m_winners_positions;
 private:
   const std::shared_ptr<Board> m_board;
-  int m_current_player; // From 0 to m_num_of_players - 1.
+  int m_current_player; // From 1 to m_num_of_players.
 
   int m_moves_taken;
 };
