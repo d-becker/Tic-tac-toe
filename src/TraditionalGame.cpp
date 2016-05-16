@@ -1,9 +1,9 @@
-#include "TraditionalGame.h"
+#include "TraditionalGame.hpp"
 
 #include <algorithm>
 
 
-namespace {
+namespace /* anonymous */ {
 
 bool checkGameWonInDirection(const ttt::Vec2& pos,
 			     int& winner,
@@ -38,7 +38,7 @@ bool checkGameWonInDirection(const ttt::Vec2& pos,
   return winner_positions.size() >= length_to_win;
 }
 
-}
+} // anonymous namespace
 
 namespace ttt {
 
@@ -65,7 +65,17 @@ TraditionalGame::~TraditionalGame()
 
 bool TraditionalGame::isGameOver() const
 {
-  return !m_winners.empty();
+  // Someone has a winning sequence
+  if (!m_winners.empty())
+    return true;
+
+  // The board is full
+  std::shared_ptr<const Board> board = getBoard();
+  if (getMovesTaken() >= board->getWidth() * board->getHeight())
+    return true;
+
+  // Game is not over
+  return false;
 }
 
 bool TraditionalGame::isLegal(const Vec2& pos,
@@ -73,12 +83,6 @@ bool TraditionalGame::isLegal(const Vec2& pos,
 {
   return getBoard()->get(pos) == 0;
 }
-
-/*bool TraditionalGame::isGameOver(int& winner,
-				 std::vector<Vec2>& winner_positions) const
-{
-  // TODO.
-}*/
 
 std::shared_ptr<Game> TraditionalGame::clone() const
 {
@@ -102,6 +106,11 @@ bool TraditionalGame::isGameWonAt(const Vec2& pos,
   }
 
   return false;
+}
+
+void TraditionalGame::clearState()
+{
+  Game::clearState();
 }
 
 } // namespace ttt.

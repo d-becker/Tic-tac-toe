@@ -1,9 +1,9 @@
-#ifndef DEFAULT_BOARD_H
-#define DEFAULT_BOARD_H
+#ifndef DEFAULT_BOARD_HPP
+#define DEFAULT_BOARD_HPP
 
 #include <unordered_map>
 
-#include "Board.h"
+#include "Board.hpp"
 
 namespace ttt {
 
@@ -40,4 +40,4 @@ private:
 
 } // namespace ttt.
 
-#endif // DEFAULT_BOARD_H
+#endif // DEFAULT_BOARD_HPP

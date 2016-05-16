@@ -1,4 +1,4 @@
-#include "DefaultBoard.h"
+#include "DefaultBoard.hpp"
 
 namespace ttt {
 

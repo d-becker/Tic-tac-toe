@@ -1,9 +1,10 @@
 #include <iostream>
 #include <memory>
 
-#include "Board.h"
-#include "DefaultBoard.h"
-#include "Vec2.h"
+#include "Board.hpp"
+#include "DefaultBoard.hpp"
+#include "TraditionalGame.hpp"
+#include "Vec2.hpp"
 
 using namespace std;
 using namespace ttt;
@@ -28,6 +29,8 @@ int main() {
   b->set(0, 3, -7);
   b->set(10, 2, -4);
   printBoard(cout, b);
+
+  auto tg = std::make_shared<TraditionalGame>(b, 2, 5);
   
   return 0;
 }

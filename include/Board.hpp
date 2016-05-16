@@ -1,9 +1,9 @@
-#ifndef BOARD_H
-#define BOARD_H
+#ifndef BOARD_HPP
+#define BOARD_HPP
 
 #include <memory>
 
-#include "Vec2.h"
+#include "Vec2.hpp"
 
 namespace ttt {
 
@@ -47,6 +47,14 @@ public:
 		  int y) const = 0;
 
   /**
+   * The same as \c get(vec.x, vec.y).
+   */
+  virtual bool get(const Vec2& vec) const
+  {
+    return get(vec.x, vec.y);
+  }
+  
+  /**
    * Returns \c true if the given cell exists.
    *
    * \return \c true if the given cell exists; \c false otherwise.
@@ -62,14 +70,6 @@ public:
   bool isValid(const Vec2& vec) const
   {
     return isValid(vec.x, vec.y);
-  }
-  
-  /**
-   * The same as \c get(vec.x, vec.y).
-   */
-  virtual bool get(const Vec2& vec) const
-  {
-    return get(vec.x, vec.y);
   }
 
   /**
@@ -111,4 +111,4 @@ public:
 
 } // namespace ttt.
 
-#endif // BOARD_H
+#endif // BOARD_HPP

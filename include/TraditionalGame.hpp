@@ -1,8 +1,8 @@
-#ifndef TRADITIONAL_GAME_H
-#define TRADITIONAL_GAME_H
+#ifndef TRADITIONAL_GAME_HPP
+#define TRADITIONAL_GAME_HPP
 
-#include "Game.h"
-#include "Vec2.h"
+#include "Game.hpp"
+#include "Vec2.hpp"
 
 namespace ttt {
 
@@ -25,8 +25,10 @@ public:
   virtual bool isGameWonAt(const Vec2& pos,
 			   int& winner,
 			   std::vector<Vec2>& winner_positions) const override;
+
+  virtual void clearState() override;
 };
 
 } // namespace ttt.
 
-#endif // TRADITIONAL_GAME_H
+#endif // TRADITIONAL_GAME_HPP

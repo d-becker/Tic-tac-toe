@@ -1,4 +1,6 @@
-#include "Game.h"
+#include "Game.hpp"
+
+#include <stdexcept>
 
 namespace ttt {
 
@@ -10,9 +12,13 @@ Game::Game(std::shared_ptr<Board> board,
     m_winners(),
     m_winners_positions(),
     m_board(board),
-    m_current_player(0),
+    m_current_player(1),
     m_moves_taken(0)
 {
+  if (!board)
+    throw std::invalid_argument("The board cannot be null.");
+  if (num_of_players < 1)
+    throw std::invalid_argument("The number of players must at least be one.");
 }
 
 Game::Game(const Game& other)
@@ -67,7 +73,7 @@ bool Game::takeMove(const Vec2& pos)
       return false;
 
   ++m_moves_taken;
-  m_current_player = m_moves_taken % m_num_of_players;
+  m_current_player = m_moves_taken % m_num_of_players + 1;
 
   return true;
 }
@@ -127,6 +133,15 @@ std::vector<int> Game::getWinners() const
 std::vector< std::vector<Vec2> > Game::getWinnersPositions() const
 {
   return m_winners_positions;
+}
+
+void Game::clearState()
+{
+  m_winners.clear();
+  m_winners_positions.clear();
+  m_board->clear();
+  m_current_player = 1;
+  m_moves_taken = 0;
 }
 
 } // namespace ttt.
