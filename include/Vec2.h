@@ -69,8 +69,8 @@ inline Vec2 operator*(Vec2 lhs,
   return lhs*=scalar;
 }
 
-inline bool operator==(const Vec2 lhs,
-		       const Vec2 rhs)
+inline bool operator==(const Vec2& lhs,
+		       const Vec2& rhs)
 {
   return lhs.x == rhs.x && lhs.y == rhs.y;
 }
