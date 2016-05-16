@@ -22,7 +22,7 @@ public:
 
   /**
    * Starts a new game with the given \c Game object. This method calls the
-   * method \c clearState on the current game.
+   * method \c clearState on the new \c Game object.
    *
    * \param game The game object to use in the new game.
    */
@@ -33,7 +33,8 @@ public:
    *
    * \param pos The position of the move.
    *
-   * \return \c true if the move has been taken; \c false if it was not possible.
+   * \return \c true if the move has been taken;
+   *         \c false if it was not possible.
    */
   bool takeMove(const Vec2& pos);
 private:

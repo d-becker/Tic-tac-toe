@@ -3,6 +3,7 @@
 
 #include "Board.hpp"
 #include "DefaultBoard.hpp"
+#include "GameFactory.hpp"
 #include "TraditionalGame.hpp"
 #include "Vec2.hpp"
 
