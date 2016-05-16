@@ -4,6 +4,7 @@
 #include "GameFactory.hpp"
 
 #include "DefaultBoard.hpp"
+#include "TraditionalGame.hpp"
 
 namespace ttt {
 

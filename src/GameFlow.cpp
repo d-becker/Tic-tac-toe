@@ -2,8 +2,12 @@
 
 namespace ttt {
 
-GameFlow::GameFlow()
-  : m_game(nullptr)
+GameFlow::GameFlow(std::initializer_list<
+		   std::pair< const std::string, std::shared_ptr<GameFactory> >
+		   > game_factories)
+  : m_game(nullptr),
+    m_game_playing(false),
+    m_game_factories(game_factories)
 {
 }
 
@@ -11,17 +15,36 @@ GameFlow::~GameFlow()
 {
 }
 
-void GameFlow::newGame()
+bool GameFlow::newGame()
 {
   if (m_game)
+  {
     m_game->clearState();
+    m_game_playing = true;
+    return true;
+  }
+
+  return false;
 }
 
-void GameFlow::newGame(std::shared_ptr<Game> game)
+bool GameFlow::newGame(std::string game_factory_name,
+		       int width,
+		       int height,
+		       int num_of_players,
+		       int length_to_win)
 {
+  std::shared_ptr<GameFactory> factory = get_factory_by_name(game_factory_name);
+  if (!factory)
+    return false;
+
+  std::shared_ptr<Game> game = factory->create(width, height, num_of_players,
+					       length_to_win);
+  if (!game)
+    return false;
+
   m_game = game;
-  if (m_game)
-    m_game->clearState();
+  m_game_playing = true;
+  return true;
 }
 
 bool GameFlow::takeMove(const Vec2& pos)
@@ -31,6 +54,36 @@ bool GameFlow::takeMove(const Vec2& pos)
   
   bool success = m_game->takeMove(pos);
   // TODO!!!
+}
+
+std::shared_ptr<GameFactory>
+GameFlow::bindGameFactory(std::string name,
+		          std::shared_ptr<GameFactory> game_factory)
+{
+  std::shared_ptr<GameFactory> old_factory = get_factory_by_name(name);
+  m_game_factories[name] = game_factory;
+  return old_factory;
+}
+
+std::shared_ptr<GameFactory> GameFlow::unbindGameFactory(std::string name)
+{
+  std::shared_ptr<GameFactory> old_factory = get_factory_by_name(name);
+  m_game_factories.erase(name);
+  return old_factory;
+}
+
+bool GameFlow::isGamePlaying() const
+{
+  return m_game_playing;
+}
+
+// Private
+std::shared_ptr<GameFactory> GameFlow::get_factory_by_name(std::string name)
+{
+  auto it = m_game_factories.find(name);
+  std::shared_ptr<GameFactory> res = it != m_game_factories.end() ?
+                                            it->second : nullptr;
+  return res;
 }
 
 } // namespace ttt
