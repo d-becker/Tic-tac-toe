@@ -75,6 +75,8 @@ bool Game::takeMove(const Vec2& pos)
   ++m_moves_taken;
   m_current_player = m_moves_taken % m_num_of_players + 1;
 
+  updateWinnerState(pos);
+
   return true;
 }
 

@@ -55,7 +55,6 @@ bool GameFlow::takeMove(const Vec2& pos)
   bool success = m_game->takeMove(pos);
   if (success)
   {
-    m_game->updateWinnerState(pos);
     if (m_game->isGameOver())
       m_game_playing = false;
   }
