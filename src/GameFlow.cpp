@@ -49,11 +49,18 @@ bool GameFlow::newGame(std::string game_factory_name,
 
 bool GameFlow::takeMove(const Vec2& pos)
 {
-  if (!m_game)
+  if (!m_game_playing || !m_game)
     return false;
   
   bool success = m_game->takeMove(pos);
-  // TODO!!!
+  if (success)
+  {
+    m_game->updateWinnerState(pos);
+    if (m_game->isGameOver())
+      m_game_playing = false;
+  }
+
+  return success;
 }
 
 std::shared_ptr<GameFactory>
@@ -75,6 +82,26 @@ std::shared_ptr<GameFactory> GameFlow::unbindGameFactory(std::string name)
 bool GameFlow::isGamePlaying() const
 {
   return m_game_playing;
+}
+
+const std::vector<int>& GameFlow::getWinners() const
+{
+  static const std::vector<int> empty{};
+  
+  if (!m_game_playing && m_game)
+    return m_game->getWinners();
+  else
+    return empty;
+}
+
+const std::vector< std::vector<Vec2> >& GameFlow::getWinnersPositions() const
+{
+  static const std::vector< std::vector<Vec2> > empty{};
+  
+  if (!m_game_playing && m_game)
+    return m_game->getWinnersPositions();
+  else
+    return empty;
 }
 
 // Private

@@ -125,12 +125,12 @@ void Game::checkWinnerState(std::vector<int>& winners,
   }
 }
 
-std::vector<int> Game::getWinners() const
+const std::vector<int>& Game::getWinners() const
 {
   return m_winners;
 }
 
-std::vector< std::vector<Vec2> > Game::getWinnersPositions() const
+const std::vector< std::vector<Vec2> >& Game::getWinnersPositions() const
 {
   return m_winners_positions;
 }

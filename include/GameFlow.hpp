@@ -3,8 +3,8 @@
 
 #include <initializer_list>
 #include <memory>
-#include <utility> // For std::pair
 #include <unordered_map>
+#include <utility> // For std::pair
 
 #include "Game.hpp"
 #include "GameFactory.hpp"
@@ -84,23 +84,31 @@ public:
   std::shared_ptr<GameFactory> unbindGameFactory(std::string name);
 
   /**
-   * Selects the \c GameFactory that is bound to \a name if one exists.
-   * If none exists, this method dows nothing.
-   *
-   * \param name The name to which the newly selected \c GameFactory is bound.
-   *
-   * \return \c true if the new \c GameFactory with
-   *         the name \a name was selected;
-   *         \c false otherwise.
-   */
-  //bool selectGameFactory(std::string name);
-
-  /**
    * Returns whether a game is being played now.
    *
    * \return \c true if a game is being played now; \c false otherwise.
    */
   bool isGamePlaying() const;
+
+  /**
+   * Returns a vector containing the id numbers of the winners if the game is
+   * over or an empty vector if the game is still being played.
+   *
+   * \return A vector containing the id numbers of the winners if the game is
+   *         over or an empty vector if the game is still being played.
+   */
+  const std::vector<int>& getWinners() const;
+  
+  /**
+   * Returns a vector containing vectors that contain the positions of the
+   * stones in the individual winning sequences if the game is over. If the game
+   * is still being played, an empty vector is returned.
+   *
+   * \return A vector containing vectors that contain the positions of the
+   *         stones in the individual winning sequences if the game is over
+   *         or an empty vector if the game is still being played.
+   */
+  const std::vector< std::vector<Vec2> >& getWinnersPositions() const;
 private:
   // Returns a smart pointer to the game factory that is bound to the
   // given name if one exists; nullptr otherwise.

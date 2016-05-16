@@ -91,9 +91,8 @@ public:
    * checks the whole board, so if a winning position is expected, it can be
    * better to use the method which takes the position.
    *
-   * If there are no winning sequences, the fields storing the number of
-   * the winning player and the winning positions are set to 0 and an
-   * emtpy vector respectively.
+   * If there are no winning sequences, the fields storing the id numbers of
+   * the winning players and the winning positions are set to an emtpy vector.
    *
    * Note: the value that is returned by the method \c isGameOver is never
    * modified by this method as the conditions for when the game is over can
@@ -103,7 +102,7 @@ public:
 
   /**
    * Checks the given position and if that is a place where the game is won,
-   * state that stores information about the state of the game is updated.
+   * the state that stores information about the state of the game is updated.
    * Otherwise the stored values are not modified.
    * 
    * Note: the value that is returned by the method \c isGameOver is never
@@ -147,20 +146,23 @@ public:
 			   std::vector<Vec2>& winner_positions) const = 0;
 
   /**
-   * Returns the id nunber of the winner if the game is won or 0 if it is not.
+   * Returns a vector containing the id numbers of the winners. Note that if the
+   * game is not over yet, this is not the final list of the winners as more
+   * winners can appear.
    *
-   * \return The id nunber of the winner if the game is won or 0 if it is not.
+   * \return A vector containing the id numbers of the winners.
    */
-  virtual std::vector<int> getWinners() const;
+  virtual const std::vector<int>& getWinners() const;
 
   /**
-   * Returns a vector containing the positions of the winning sequence
-   * if one exists, otherwise an empty vector.
+   * Returns a vector containing vectors that contain the positions of the
+   * stones in the individual winning sequences. If there is no winning
+   * sequence, an empty vector is returned.
    *
-   * \return A vector containing the positions of the winning sequence
-   *         if one exists, otherwise an empty vector.
+   * \return A vector containing vectors that contain the positions of the
+   *         stones in the individual winning sequences.
    */
-  virtual std::vector< std::vector<Vec2> > getWinnersPositions() const;
+  virtual const std::vector< std::vector<Vec2> >& getWinnersPositions() const;
 
   /**
    * Clears the state of the game so that a new game can start. All subclasses
