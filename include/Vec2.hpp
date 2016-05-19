@@ -1,5 +1,5 @@
-#ifndef VEC2_HPP
-#define VEC2_HPP
+#ifndef TTT_VEC2_HPP
+#define TTT_VEC2_HPP
 
 namespace ttt {
 
