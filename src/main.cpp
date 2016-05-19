@@ -1,12 +1,12 @@
 #include <iostream>
 #include <memory>
 
-#include "Board.hpp"
-#include "DefaultBoard.hpp"
-#include "GameFactory.hpp"
-#include "TraditionalGameFactory.hpp"
-#include "TraditionalGame.hpp"
-#include "Vec2.hpp"
+#include "TicTacToe/Board.hpp"
+#include "TicTacToe/DefaultBoard.hpp"
+#include "TicTacToe/GameFactory.hpp"
+#include "TicTacToe/TraditionalGameFactory.hpp"
+#include "TicTacToe/TraditionalGame.hpp"
+#include "TicTacToe/Vec2.hpp"
 
 using namespace std;
 using namespace ttt;

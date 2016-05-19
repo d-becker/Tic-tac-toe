@@ -1,10 +1,10 @@
 #ifndef TRADITIONAL_GAME_FACTORY_HPP
 #define TRADITIONAL_GAME_FACTORY_HPP
 
-#include "GameFactory.hpp"
+#include "TicTacToe/GameFactory.hpp"
 
-#include "DefaultBoard.hpp"
-#include "TraditionalGame.hpp"
+#include "TicTacToe/DefaultBoard.hpp"
+#include "TicTacToe/TraditionalGame.hpp"
 
 namespace ttt {
 

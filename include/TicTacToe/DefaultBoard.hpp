@@ -3,7 +3,7 @@
 
 #include <unordered_map>
 
-#include "Board.hpp"
+#include "TicTacToe/Board.hpp"
 
 namespace ttt {
 

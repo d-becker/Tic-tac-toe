@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "Vec2.hpp"
+#include "TicTacToe/Vec2.hpp"
 
 namespace ttt {
 

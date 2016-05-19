@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include "Game.hpp"
+#include "TicTacToe/Game.hpp"
 
 namespace ttt {
 

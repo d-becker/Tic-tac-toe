@@ -6,9 +6,9 @@
 #include <unordered_map>
 #include <utility> // For std::pair
 
-#include "Game.hpp"
-#include "GameFactory.hpp"
-#include "Vec2.hpp"
+#include "TicTacToe/Game.hpp"
+#include "TicTacToe/GameFactory.hpp"
+#include "TicTacToe/Vec2.hpp"
 
 namespace ttt {
 
@@ -19,6 +19,8 @@ public:
 	   std::pair< const std::string, std::shared_ptr<GameFactory> >
 	   > game_factories);
   virtual ~GameFlow();
+
+  std::shared_ptr<const Game> getGame() const;
 
   /**
    * Starts a new game with the current settings. This method calls the method

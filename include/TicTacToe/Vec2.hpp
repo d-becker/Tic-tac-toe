@@ -77,4 +77,4 @@ inline bool operator==(const Vec2& lhs,
 
 } // namespace ttt.
 
-#endif //  VEC2_HPP
+#endif //  TTT_VEC2_HPP

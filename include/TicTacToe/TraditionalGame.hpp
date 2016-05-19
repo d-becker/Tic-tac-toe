@@ -1,8 +1,8 @@
 #ifndef TRADITIONAL_GAME_HPP
 #define TRADITIONAL_GAME_HPP
 
-#include "Game.hpp"
-#include "Vec2.hpp"
+#include "TicTacToe/Game.hpp"
+#include "TicTacToe/Vec2.hpp"
 
 namespace ttt {
 

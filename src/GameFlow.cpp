@@ -1,4 +1,4 @@
-#include "GameFlow.hpp"
+#include "TicTacToe/GameFlow.hpp"
 
 namespace ttt {
 
@@ -13,6 +13,11 @@ GameFlow::GameFlow(std::initializer_list<
 
 GameFlow::~GameFlow()
 {
+}
+
+std::shared_ptr<const Game> GameFlow::getGame() const
+{
+  return m_game;
 }
 
 bool GameFlow::newGame()

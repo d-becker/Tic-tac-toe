@@ -1,4 +1,4 @@
-#include "TraditionalGame.hpp"
+#include "TicTacToe/TraditionalGame.hpp"
 
 #include <algorithm>
 

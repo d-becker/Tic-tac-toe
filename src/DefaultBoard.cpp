@@ -1,4 +1,4 @@
-#include "DefaultBoard.hpp"
+#include "TicTacToe/DefaultBoard.hpp"
 
 namespace ttt {
 

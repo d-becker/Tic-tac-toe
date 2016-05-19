@@ -4,7 +4,7 @@
 #include <memory>
 #include <vector>
 
-#include "Board.hpp"
+#include "TicTacToe/Board.hpp"
 
 namespace ttt {
 
