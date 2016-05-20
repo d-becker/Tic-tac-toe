@@ -49,7 +49,7 @@ public:
   /**
    * The same as \c get(vec.x, vec.y).
    */
-  virtual bool get(const Vec2& vec) const
+  virtual int get(const Vec2& vec) const
   {
     return get(vec.x, vec.y);
   }
